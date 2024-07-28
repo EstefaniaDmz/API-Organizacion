@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOBeneficiarios.cs" />
+    <Compile Include="DTOBeneficiariosVW.cs" />
     <Compile Include="DTOParentescos.cs" />
     <Compile Include="DTOPuestos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

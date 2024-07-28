@@ -65,7 +65,7 @@ namespace API_Organizacion.Services
                          select p).FirstOrDefault();
                 if (model == null)
                 {
-                    return "Error: No se encontró el objecto que se dese actualizar";
+                    return "Error: No se encontró el objecto que se desea actualizar";
                 }
                 model.descripcion = puesto.descripcion;
 
