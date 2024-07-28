@@ -27,6 +27,8 @@ builder.Services.AddScoped<IPuestos, PuestosService>();
 builder.Services.AddScoped<IParentescos, ParentescosService>();
 
 builder.Services.AddScoped<IBeneficiarios, BeneficiariosService>();
+
+builder.Services.AddScoped<IEmpleadosUsuarios, EmpleadosUsuariosService>();
 //==========================================================//
 
 builder.Services.AddCors(option => option.AddPolicy("AllowAnyOrigin",
