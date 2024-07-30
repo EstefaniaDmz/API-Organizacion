@@ -86,7 +86,9 @@ namespace API_Organizacion.Services
                 model.apellidoPaterno = beneficiaro.apellidoPaterno;
                 model.empleadoId = beneficiaro.empleadoId;
                 model.parentescoId = beneficiaro.parentescoId;
+                model.idBeneficiario = beneficiaro.idBeneficiario;
                 dbContext.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                dbContext.SaveChanges();
                 return "Beneficiario actualizado correctamente";
             }
             catch (Exception ex)

@@ -73,11 +73,7 @@ namespace API_Organizacion.Services
                 modelEmp.apellidoMaterno = empleado.apellidoMaterno;
                 modelEmp.apellidoPaterno = empleado.apellidoPaterno;
                 modelEmp.fechaNacimiento = empleado.fechaNacimiento;
-                int edad = empleado.fechaNacimiento.Year - DateTime.Now.Year;
-                if(empleado.fechaNacimiento < DateTime.Now)
-                {
-                    edad--;
-                }
+                int edad = DateTime.Now.Year - empleado.fechaNacimiento.Year;
                 modelEmp.edad = edad;
                 modelEmp.fotografia = fotografiaEmpleado;
                 modelEmp.salario = empleado.salario;
@@ -114,7 +110,7 @@ namespace API_Organizacion.Services
                 {
                     return "Error: no se encontró el objeto que se desea actualizar";
                 }
-                if (empleado.fotografia.Contains("/"))
+                if (empleado.fotografia.Contains("C:"))
                 {
                     byte[] imageData;
                     using (FileStream fs = new FileStream(empleado.fotografia, FileMode.Open, FileAccess.Read))
@@ -127,11 +123,11 @@ namespace API_Organizacion.Services
                     string fotografiaEmpleado = Convert.ToBase64String(imageData);
                     empleado.fotografia = fotografiaEmpleado;
                 }
-                int edad = empleado.fechaNacimiento.Year - DateTime.Now.Year;
-                if (empleado.fechaNacimiento < DateTime.Now)
+                if(empleado.fotografia == "")
                 {
-                    edad--;
+                    empleado.fotografia = modelEmp.fotografia;
                 }
+                int edad = DateTime.Now.Year - empleado.fechaNacimiento.Year;
                 modelEmp.nombre = empleado.nombre;
                 modelEmp.apellidoMaterno = empleado.apellidoMaterno;
                 modelEmp.apellidoPaterno = empleado.apellidoPaterno;
@@ -169,8 +165,9 @@ namespace API_Organizacion.Services
                 {
                     return "Error: No se encontró el objeto que se desea eliminar";
                 }
-                dbContext.Empleados.Remove(empleado);
                 dbContext.Usuarios.Remove(usuario);
+                dbContext.SaveChanges();
+                dbContext.Empleados.Remove(empleado);
                 dbContext.SaveChanges();
                 return "Empleado eliminado con éxito";
             }
